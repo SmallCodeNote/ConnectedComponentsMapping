@@ -227,19 +227,20 @@ namespace ConnectedComponentsMapping
 
             }
 
+
             int rows = binaryImage.Rows;
             int cols = binaryImage.Cols;
 
             Mat hsvColorImage = new Mat(rows, cols, MatType.CV_8UC3);
             var labelIndexer = Labels.GetGenericIndexer<int>();
-            var dstIndexer = hsvColorImage.GetGenericIndexer<Vec3b>();
+            var hsvColorImageIndexer = hsvColorImage.GetGenericIndexer<Vec3b>();
 
             for (int y = 0; y < rows; y++)
             {
                 for (int x = 0; x < cols; x++)
                 {
                     int labelValue = labelIndexer[y, x];
-                    dstIndexer[y, x] = ComponentColors[labelValue ].ToVec3b();
+                    hsvColorImageIndexer[y, x] = ComponentColors[labelValue ].ToVec3b();
                 }
             }
 
